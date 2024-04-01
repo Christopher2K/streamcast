@@ -7,6 +7,12 @@ defmodule StreamcastApiWeb.Router do
 
   scope "/api", StreamcastApiWeb do
     pipe_through :api
+
+    post "/room", RoomController, :create
+    get "/room/:id", RoomController, :show
+    put "/room/join/:id", RoomController, :join
+    put "/room/leave/:id", RoomController, :leave
+    delete "/room/:id", RoomController, :close
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
