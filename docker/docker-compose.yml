@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  streamcast_db:
+    image: postgres:16.1
+    restart: always
+    env_file: ../.env.dev
+    ports:
+      - 5432:5432
+    volumes:
+      - streamcast_db_data:/var/lib/postgresql/data
+
+  ask_live_db_test:
+    image: postgres:16.1
+    restart: always
+    env_file: ../.env.test
+    ports:
+      - 54321:5432
+
+volumes:
+  streamcast_db_data:
+

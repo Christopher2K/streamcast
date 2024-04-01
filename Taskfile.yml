@@ -1,0 +1,11 @@
+version: '3'
+tasks:
+  compose:
+    cmds:
+      - docker compose --file ./docker/docker-compose.yml {{ .CLI_ARGS }}
+
+  mix:
+    dotenv: ['.env.dev']
+    dir: './streamcast_api'
+    cmds:
+      - mix {{ .CLI_ARGS }}
