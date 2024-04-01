@@ -28,3 +28,17 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 streamcast_api-*.tar
 
+streamcast_app/dist
+streamcast_app/.solid
+streamcast_app/.output
+streamcast_app/.vercel
+streamcast_app/.netlify
+streamcast_app/netlify
+streamcast_app/.vinxi
+
+# Environment
+streamcast_app/.env
+streamcast_app/.env*.local
+
+# dependencies
+streamcast_app/node_modules
