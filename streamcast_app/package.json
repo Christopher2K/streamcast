@@ -5,7 +5,8 @@
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "version": "vinxi version"
+    "version": "vinxi version",
+    "lint:write": "prettier --write ."
   },
   "dependencies": {
     "@solidjs/meta": "~0.29.2",
@@ -16,5 +17,8 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "prettier": "~3.2.5"
   }
 }
