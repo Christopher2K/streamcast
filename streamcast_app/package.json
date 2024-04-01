@@ -1,7 +1,9 @@
 {
+  "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json",
   "name": "example-basic",
   "type": "module",
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
@@ -9,16 +11,20 @@
     "lint:write": "prettier --write ."
   },
   "dependencies": {
+    "@ark-ui/solid": "~2.2.0",
     "@solidjs/meta": "~0.29.2",
     "@solidjs/router": "~0.13.1",
     "@solidjs/start": "~1.0.0-rc.0",
     "solid-js": "~1.8.16",
     "vinxi": "~0.3.10"
   },
+  "devDependencies": {
+    "@pandacss/dev": "~0.36.1",
+    "prettier": "~3.2.5",
+    "typescript": "~5.4.3",
+    "vite-tsconfig-paths": "~4.3.2"
+  },
   "engines": {
     "node": ">=18"
-  },
-  "devDependencies": {
-    "prettier": "~3.2.5"
   }
 }

@@ -42,3 +42,7 @@ streamcast_app/.env*.local
 
 # dependencies
 streamcast_app/node_modules
+
+## Panda
+styled-system
+styled-system-studio
