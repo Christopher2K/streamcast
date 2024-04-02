@@ -9,3 +9,9 @@ tasks:
     dir: './streamcast_api'
     cmds:
       - mix {{ .CLI_ARGS }}
+
+  pnpm:
+    dotenv: ['.env.dev']
+    dir: './streamcast_app'
+    cmds:
+      - pnpm {{ .CLI_ARGS }}
