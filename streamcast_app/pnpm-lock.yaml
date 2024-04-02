@@ -16,6 +16,9 @@ dependencies:
   ky:
     specifier: ~1.2.3
     version: 1.2.3
+  phoenix:
+    specifier: ~1.7.11
+    version: 1.7.11
   solid-js:
     specifier: ~1.8.16
     version: 1.8.16
@@ -30,6 +33,9 @@ devDependencies:
   '@park-ui/panda-preset':
     specifier: ~0.36.1
     version: 0.36.1(@internationalized/date@3.5.2)(@pandacss/dev@0.36.1)(@pandacss/types@0.36.1)
+  '@types/phoenix':
+    specifier: ~1.6.4
+    version: 1.6.4
   prettier:
     specifier: ~3.2.5
     version: 3.2.5
@@ -1663,6 +1669,10 @@ packages:
     dependencies:
       undici-types: 5.26.5
     dev: false
+
+  /@types/phoenix@1.6.4:
+    resolution: {integrity: sha512-B34A7uot1Cv0XtaHRYDATltAdKx0BvVKNgYNqE4WjtPUa4VQJM7kxeXcVKaH+KS+kCmZ+6w+QaUdcljiheiBJA==}
+    dev: true
 
   /@types/resolve@1.20.2:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
@@ -4541,6 +4551,10 @@ packages:
 
   /perfect-debounce@1.0.0:
     resolution: {integrity: sha512-xCy9V055GLEqoFaHoC1SoLIaLmWctgCUaBaWxDZ7/Zx4CTyX7cJQLJOok/orfjZAh9kEYpjJa4d0KcJmCbctZA==}
+
+  /phoenix@1.7.11:
+    resolution: {integrity: sha512-aeikMR/Qh6gAygY45d5p/B7srqH60h0GbCIauEAStAtRUq4hvlkzDTyDj1NJidJEV9IKFhZe7f9L+zosUJdF/g==}
+    dev: false
 
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}

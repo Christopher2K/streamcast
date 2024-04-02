@@ -1,8 +1,10 @@
 defmodule StreamcastApi.Calls.Room do
-  alias StreamcastApi.Calls.Peer
-
   use Ecto.Schema
+
   import Ecto.Changeset
+  import Ecto.Query, warn: false
+
+  alias StreamcastApi.Calls.Peer
 
   @type t :: %__MODULE__{
           id: String.t(),
@@ -26,4 +28,19 @@ defmodule StreamcastApi.Calls.Room do
     |> cast(attrs, [:name])
     |> validate_required([:name])
   end
+
+  def to_json(%__MODULE__{} = room) do
+    %{
+      "id" => room.id,
+      "name" => room.name,
+      "peers" => room.peers |> Enum.map(fn peer -> Peer.to_json(peer) end)
+    }
+  end
+
+  def queryable() do
+    from(r in __MODULE__, as: :room)
+  end
+
+  def filter_by(queryable, :id, id), do: queryable |> where([r], r.id == ^id)
+  def include(queryable, included), do: queryable |> preload([r], ^included)
 end
