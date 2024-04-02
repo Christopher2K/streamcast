@@ -1,18 +1,24 @@
 defmodule StreamcastApiWeb.RoomController do
+  alias StreamcastApi.Calls
   use StreamcastApiWeb, :controller
 
   @doc """
   Create a room for people to join in
   """
-  def create(conn) do
-    # params = conn.body_params
+  def create(conn, _) do
+    params = conn.body_params
+
+    with {:ok, room} <- Calls.create_room(params) do
+      render(conn, :single_room, room: room)
+    end
   end
 
   @doc """
   Return a room informations
   """
   def show(conn, %{"id" => id}) do
-    conn |> render(%{"hello" => "world"})
+    room = Calls.get_room!(id)
+    conn |> render(:single_room, room: room)
   end
 
   @doc """

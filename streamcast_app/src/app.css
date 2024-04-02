@@ -1,1 +1,11 @@
 @layer reset, base, tokens, recipes, utilities;
+
+@layer base {
+  html,
+  body,
+  #app {
+    min-height: 100svh;
+    width: 100%;
+    height: auto;
+  }
+}

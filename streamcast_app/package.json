@@ -15,11 +15,13 @@
     "@solidjs/meta": "~0.29.2",
     "@solidjs/router": "~0.13.1",
     "@solidjs/start": "~1.0.0-rc.0",
+    "ky": "~1.2.3",
     "solid-js": "~1.8.16",
     "vinxi": "~0.3.10"
   },
   "devDependencies": {
     "@pandacss/dev": "~0.36.1",
+    "@park-ui/panda-preset": "~0.36.1",
     "prettier": "~3.2.5",
     "typescript": "~5.4.3",
     "vite-tsconfig-paths": "~4.3.2"

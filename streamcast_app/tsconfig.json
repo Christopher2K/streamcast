@@ -24,6 +24,9 @@
       "#style/*": [
         "./styled-system/*"
       ],
+      "styled-system/*": [
+        "./styled-system/*"
+      ],
     }
   },
   "include": [

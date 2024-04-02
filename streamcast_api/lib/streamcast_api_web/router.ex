@@ -13,6 +13,8 @@ defmodule StreamcastApiWeb.Router do
     put "/room/join/:id", RoomController, :join
     put "/room/leave/:id", RoomController, :leave
     delete "/room/:id", RoomController, :close
+
+    post "/auth/login", AuthController, :login
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

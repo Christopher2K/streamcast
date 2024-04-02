@@ -1,5 +1,8 @@
 defmodule StreamcastApiWeb.RoomJSON do
-  def show(_) do
-    %{"hello" => "world"}
+  def single_room(%{room: room}) do
+    %{
+      "id" => room.id,
+      "name" => room.name
+    }
   end
 end
