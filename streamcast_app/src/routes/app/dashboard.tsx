@@ -1,5 +1,6 @@
 import { VStack } from "#style/jsx";
 import { CreateRoomForm } from "#root/domain/room/createRoomForm";
+import { JoinRoomForm } from "#root/domain/room/joinRoomForm";
 
 export default function AppDashboard() {
   return (
@@ -10,6 +11,7 @@ export default function AppDashboard() {
       px="10"
     >
       <CreateRoomForm />
+      <JoinRoomForm />
     </VStack>
   );
 }

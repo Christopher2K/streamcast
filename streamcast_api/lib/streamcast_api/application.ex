@@ -17,6 +17,7 @@ defmodule StreamcastApi.Application do
       # Start a worker by calling: StreamcastApi.Worker.start_link(arg)
       # {StreamcastApi.Worker, arg},
       # Start to serve requests, typically the last entry
+      StreamcastApiWeb.Presence,
       StreamcastApiWeb.Endpoint
     ]
 

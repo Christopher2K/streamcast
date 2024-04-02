@@ -1,6 +1,7 @@
 defmodule StreamcastApiWeb.RoomChannel do
   use StreamcastApiWeb, :channel
 
+  alias StreamcastApiWeb.Presence
   alias StreamcastApi.Calls
   alias StreamcastApi.Auth
 
@@ -8,8 +9,28 @@ defmodule StreamcastApiWeb.RoomChannel do
   def join("room:" <> room_id, _payload, socket) do
     with {:ok, user} <- Auth.get_user(socket.assigns.user_id),
          {:ok, room} <- Calls.add_peer_to_room(user, room_id) do
+      send(self(), :after_join)
       {:ok, Calls.Room.to_json(room), socket}
     end
+  end
+
+  @impl true
+  def terminate(_reason, socket) do
+    Presence.untrack(socket, socket.assigns.user_id)
+    broadcast(socket, "presence:update", Presence.list(socket))
+    broadcast(socket, "presence:left", %{"userId" => socket.assigns.user_id})
+  end
+
+  @impl true
+  def handle_info(:after_join, socket) do
+    {:ok, _} =
+      Presence.track(socket, socket.assigns.user_id, %{
+        online_at: inspect(System.system_time(:second))
+      })
+
+    broadcast(socket, "presence:update", Presence.list(socket))
+    broadcast(socket, "presence:joined", %{"userId" => socket.assigns.user_id})
+    {:noreply, socket}
   end
 
   # Channels can be used in a request/response fashion

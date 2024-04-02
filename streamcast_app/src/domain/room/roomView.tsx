@@ -33,11 +33,11 @@ function ActiveRoom(props: ActiveRoomProps) {
   });
   socket.connect();
   const channel = socket.channel("room:" + props.room.id);
-  channel.join().receive("ok", (resp) => {
-    console.log("HEYYYYY");
-    console.log(resp);
-    // channel.push('client:join', { }).send()
+  channel.join().receive("ok", (_) => {
+    console.log("Joined the room:" + props.room.id);
   });
+  channel.on("presence:joined", (e) => console.log("joined", e));
+  channel.on("presence:left", (e) => console.log("left", e));
 
   return null;
 }
