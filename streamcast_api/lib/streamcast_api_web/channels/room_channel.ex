@@ -8,9 +8,9 @@ defmodule StreamcastApiWeb.RoomChannel do
   @impl true
   def join("room:" <> room_id, _payload, socket) do
     with {:ok, user} <- Auth.get_user(socket.assigns.user_id),
-         {:ok, room} <- Calls.add_peer_to_room(user, room_id) do
+         {:ok, _room} <- Calls.add_peer_to_room(user, room_id) do
       send(self(), :after_join)
-      {:ok, Calls.Room.to_json(room), socket}
+      {:ok, Presence.list(socket), socket}
     end
   end
 
@@ -33,26 +33,33 @@ defmodule StreamcastApiWeb.RoomChannel do
     {:noreply, socket}
   end
 
-  # Channels can be used in a request/response fashion
-  # by sending replies to requests from the client
   @impl true
-  def handle_in("ping", payload, socket) do
-    {:reply, {:ok, payload}, socket}
-  end
+  def handle_in("rtc:offer", %{"to" => to, "sdp" => sdp, "type" => type}, socket) do
+    StreamcastApiWeb.Endpoint.broadcast("peer:" <> to, "rtc:offer:received", %{
+      "from" => socket.assigns.user_id,
+      "type" => type,
+      "sdp" => sdp
+    })
 
-  # It is also common to receive messages from the client and
-  # broadcast to everyone in the current topic (room:lobby).
-  @impl true
-  def handle_in("shout", payload, socket) do
-    broadcast(socket, "shout", payload)
     {:noreply, socket}
   end
 
-  def handle_in("client:join", _payload, socket) do
+  def handle_in("rtc:answer", %{"to" => to, "sdp" => sdp, "type" => type}, socket) do
+    StreamcastApiWeb.Endpoint.broadcast("peer:" <> to, "rtc:answer:received", %{
+      "from" => socket.assigns.user_id,
+      "type" => type,
+      "sdp" => sdp
+    })
+
     {:noreply, socket}
   end
 
-  def handle_in("client:leave", _payload, socket) do
+  def handle_in("rtc:ice_candidate", %{"to" => to, "candidate" => candidate}, socket) do
+    StreamcastApiWeb.Endpoint.broadcast("peer:" <> to, "rtc:ice_candidate:received", %{
+      "from" => socket.assigns.user_id,
+      "candidate" => candidate
+    })
+
     {:noreply, socket}
   end
 end

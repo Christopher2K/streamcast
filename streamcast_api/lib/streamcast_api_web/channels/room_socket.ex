@@ -11,6 +11,7 @@ defmodule StreamcastApiWeb.RoomSocket do
   # pointing to the `StreamcastApiWeb.RoomChannel`:
   #
   channel "room:*", StreamcastApiWeb.RoomChannel
+  channel "peer:*", StreamcastApiWeb.PeerChannel
 
   # To create a channel file, use the mix task:
   #
@@ -49,5 +50,5 @@ defmodule StreamcastApiWeb.RoomSocket do
   #
   # Returning `nil` makes this socket anonymous.
   @impl true
-  def id(socket), do: "room_user:#{socket.assigns.user_id}"
+  def id(socket), do: socket.assigns.user_id
 end
