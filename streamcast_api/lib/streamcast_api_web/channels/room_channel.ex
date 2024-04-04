@@ -25,7 +25,7 @@ defmodule StreamcastApiWeb.RoomChannel do
   def handle_info(:after_join, socket) do
     {:ok, _} =
       Presence.track(socket, socket.assigns.user_id, %{
-        online_at: inspect(System.system_time(:second))
+        "onlineAt" => inspect(System.system_time(:second))
       })
 
     broadcast(socket, "presence:update", Presence.list(socket))

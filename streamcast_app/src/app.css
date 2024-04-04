@@ -8,4 +8,9 @@
     width: 100%;
     height: auto;
   }
+
+  .peer-video {
+    width: 100%;
+    height: 100%;
+  }
 }
